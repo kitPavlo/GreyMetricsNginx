@@ -7,7 +7,7 @@ const __dirname = path.resolve(path.dirname(''));
 class NginxCertificateService {
   constructor() {
     this.acmeShPath = "/home/bitnami/.acme.sh";
-    this.configDir = "../userDomains";
+    this.configDir = "userDomains";
   }
 
   issue(domain) {
