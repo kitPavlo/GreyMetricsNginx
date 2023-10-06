@@ -2,7 +2,8 @@ import fs from "fs";
 import { execSync } from "child_process";
 import path from 'path';
 
-const __dirname = path.resolve(path.dirname(''));
+// const __dirname = path.resolve(path.dirname(''));
+const __dirname = "~/greymetrics/GreyMetricsNginx";
 
 class NginxCertificateService {
   constructor() {
