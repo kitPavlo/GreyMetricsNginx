@@ -7,7 +7,7 @@ const __dirname = "~/greymetrics/GreyMetricsNginx";
 
 class NginxCertificateService {
   constructor() {
-    this.acmeShPath = "/home/bitnami/.acme.sh";
+    // this.acmeShPath = "/home/bitnami/.acme.sh";
     this.configDir = "userDomains";
   }
 
@@ -16,7 +16,7 @@ class NginxCertificateService {
     if (path) {
       execSync("sudo nginx -s reload");
       execSync(
-        `${this.acmeShPath}/acme.sh --issue --log -d ${domain} -w /home/bitnami/webroot`
+        `acme.sh --issue --log -d ${domain} -w /home/bitnami/webroot`
       );
       console.log(`${domain} certificate issued`);
       return true;
@@ -34,7 +34,7 @@ class NginxCertificateService {
       "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     );
     execSync(
-      `${this.acmeShPath}/acme.sh` +
+      `acme.sh` +
         ` --installcert --log` +
         ` -d ${domain}` +
         ` --cert-file ${dirPath}/cert.pem` +
