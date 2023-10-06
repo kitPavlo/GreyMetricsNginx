@@ -59,7 +59,7 @@ class NginxCertificateService {
     );
     if (!fs.existsSync(dirPath)) {
       console.log("Creating the file ....")
-      fs.mkdirSync(dirPath);
+      fs.mkdirSync(dirPath, {recursive: true});
     }
     const path = `${dirPath}/${domain}.conf`;
     const content = this.configBaseContent(domain);
