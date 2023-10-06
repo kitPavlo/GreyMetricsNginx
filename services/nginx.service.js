@@ -58,6 +58,7 @@ class NginxCertificateService {
       "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     );
     if (!fs.existsSync(dirPath)) {
+      console.log("Creating the folder...")
       fs.mkdirSync(dirPath);
     }
     const path = `${dirPath}/${domain}.conf`;
