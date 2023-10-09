@@ -2,12 +2,11 @@ import fs from "fs";
 import { execSync } from "child_process";
 import path from 'path';
 
-// const __dirname = path.resolve(path.dirname(''));
-const __dirname = "~/greymetrics/GreyMetricsNginx";
+const __dirname = path.resolve(path.dirname(''));
 
 class NginxCertificateService {
   constructor() {
-    this.acmeShPath = "~/.acme.sh";
+    this.acmeShPath = "/home/bitnami/.acme.sh";
     this.configDir = "userDomains";
   }
 
