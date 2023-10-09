@@ -110,8 +110,8 @@ class NginxCertificateService {
       listen 443 ssl;
       listen [::]:443;
 
-      ssl_certificate /opt/bitnami/apache2/htdocs/greymetrics_fullcode/backend/userDomains/${domainName}/fullchain.pem;
-      ssl_certificate_key /opt/bitnami/apache2/htdocs/greymetrics_fullcode/backend/userDomains/${domainName}/key.pem;
+      ssl_certificate ~/GreyMetricsNginx/userDomains/${domainName}/fullchain.pem;
+      ssl_certificate_key ~/GreyMetricsNginx/userDomains/${domainName}/key.pem;
       ssl_session_timeout 1h;
       ssl_prefer_server_ciphers on;
       ssl_session_cache shared:SSL:5m;
