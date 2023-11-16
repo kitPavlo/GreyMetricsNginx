@@ -30,7 +30,7 @@ class NginxCertificateService {
     const dirPath = `${__dirname}/${this.configDir}/${domain}`;
     console.log(
       { dirPath },
-      "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+      "install!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     );
     execSync(
       `${this.acmeShPath}/acme.sh` +
@@ -54,7 +54,7 @@ class NginxCertificateService {
     const dirPath = `${__dirname}/${this.configDir}/${domain}/`;
     console.log(
       { dirPath },
-      "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+      "createBaseConfigFile!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     );
     if (!fs.existsSync(dirPath)) {
       console.log("Creating the file ....")
@@ -62,7 +62,13 @@ class NginxCertificateService {
     }
     const path = `${dirPath}/${domain}.conf`;
     const content = this.configBaseContent(domain);
+
+    console.log("createBaseConfigFile.writeFileSync.before");
+
     fs.writeFileSync(path, content);
+
+    console.log("createBaseConfigFile.writeFileSync.after");
+
     return path;
   }
 
@@ -70,14 +76,19 @@ class NginxCertificateService {
     const dirPath = `${__dirname}/${this.configDir}/${domain}/`;
     console.log(
       { dirPath },
-      "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+      "createSSLConfigFile!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     );
     if (!fs.existsSync(dirPath)) {
       fs.mkdirSync(dirPath);
     }
     const path = `${dirPath}/${domain}.conf`;
     const content = this.configSSLContent(domain);
+
+    console.log("createSSLConfigFile.writeFileSync.before");
+
     fs.writeFileSync(path, content);
+
+    console.log("createSSLConfigFile.writeFileSync.after");
     return path;
   }
 
@@ -86,7 +97,7 @@ class NginxCertificateService {
     server {
       listen 80;
       listen [::]:80;
-      
+
       server_name ${domainName};
 
       location ^~ /.well-known/acme-challenge/ {
@@ -109,8 +120,8 @@ class NginxCertificateService {
       listen 443 ssl;
       listen [::]:443;
 
-      ssl_certificate ~/GreyMetricsNginx/userDomains/${domainName}/fullchain.pem;
-      ssl_certificate_key ~/GreyMetricsNginx/userDomains/${domainName}/key.pem;
+      ssl_certificate ${__dirname}/${this.configDir}/${domainName}/fullchain.pem;
+      ssl_certificate_key ${__dirname}/${this.configDir}/${domainName}/key.pem;
       ssl_session_timeout 1h;
       ssl_prefer_server_ciphers on;
       ssl_session_cache shared:SSL:5m;
