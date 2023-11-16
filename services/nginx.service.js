@@ -123,8 +123,8 @@ class NginxCertificateService {
       listen 443 ssl;
       listen [::]:443;
 
-      ssl_certificate ~/GreyMetricsNginx/userDomains/${domainName}/fullchain.pem;
-      ssl_certificate_key ~/GreyMetricsNginx/userDomains/${domainName}/key.pem;
+      ssl_certificate ${__dirname}/${this.configDir}/${domainName}/fullchain.pem;
+      ssl_certificate_key ${__dirname}/${this.configDir}/${domainName}/key.pem;
       ssl_session_timeout 1h;
       ssl_prefer_server_ciphers on;
       ssl_session_cache shared:SSL:5m;
