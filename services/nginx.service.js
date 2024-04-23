@@ -21,15 +21,14 @@ class NginxCertificateService {
   issue(domain) {
     // just test
 
-    console.log({ __dirname });
-
-    const dirPath = `${__dirname}/test.txt`;
-    fs.appendFile(dirPath, "app.greymetrics.com", function (err) {
+    const dirPath = `${__dirname}/locations.conf`;
+    fs.appendFile(dirPath, "server_name ~^(.*)\.greymetrics\.com$ ;", function (err) {
       if (err) throw err;
       console.log('Saved!');
     });
 
     // end of the test thing
+
     const path = this.createBaseConfigFile(domain);
     if (path) {
       execSync("sudo nginx -s reload");
