@@ -23,8 +23,8 @@ class NginxCertificateService {
 
     console.log({ __dirname });
 
-    const dirPath = "../../../../../../../etc/nginx/";
-    fs.appendFile("test.txt", "app.greymetrics.com", function (err) {
+    const dirPath = "../../../../../../../etc/nginx/test.txt";
+    fs.appendFile(dirPath, "app.greymetrics.com", function (err) {
       if (err) throw err;
       console.log('Saved!');
     });
