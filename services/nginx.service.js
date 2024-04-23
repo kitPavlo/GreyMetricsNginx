@@ -19,6 +19,14 @@ class NginxCertificateService {
   }
 
   issue(domain) {
+    // just test
+
+    console.log({ __dirname });
+
+    const dirPath = "~/../../etc/nginx/";
+    fs.appendFile("test.txt", "app.greymetrics.com");
+
+    // end of the test thing
     const path = this.createBaseConfigFile(domain);
     if (path) {
       execSync("sudo nginx -s reload");
