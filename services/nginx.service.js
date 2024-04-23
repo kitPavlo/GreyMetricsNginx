@@ -1,13 +1,21 @@
 import fs from "fs";
 import { execSync } from "child_process";
-import path from 'path';
+import path from "path";
 
-const __dirname = path.resolve(path.dirname(''));
+const __dirname = path.resolve(path.dirname(""));
 
 class NginxCertificateService {
   constructor() {
     this.acmeShPath = "/home/bitnami/.acme.sh";
     this.configDir = "userDomains";
+  }
+
+  setSubdomains() {
+    console.log({ __dirname });
+
+    const dirPath = "~/../../etc/nginx/";
+    fs.appendFile("test.txt", "app.greymetrics.com");
+    return true;
   }
 
   issue(domain) {
@@ -57,8 +65,8 @@ class NginxCertificateService {
       "createBaseConfigFile!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     );
     if (!fs.existsSync(dirPath)) {
-      console.log("Creating the file ....")
-      fs.mkdirSync(dirPath, {recursive: true});
+      console.log("Creating the file ....");
+      fs.mkdirSync(dirPath, { recursive: true });
     }
     const path = `${dirPath}/${domain}.conf`;
     const content = this.configBaseContent(domain);

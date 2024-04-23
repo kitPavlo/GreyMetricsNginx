@@ -1,6 +1,18 @@
 import { nginxService } from "../services/nginx.service.js";
 
 class NginxController {
+  setSubdomains(req, res) {
+    try {
+
+      const success = nginxService.setSubdomains(domain);
+      res.send(success);
+    } catch (e) {
+      console.log(`setSubdomains - ${e.message}`);
+      console.log({ error: e });
+      res.status(500).send({ error: e });
+    }
+  }
+
   issue(req, res) {
     try {
       const { domain } = req.body;

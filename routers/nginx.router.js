@@ -3,6 +3,8 @@ import { nginxController } from "../controllers/nginx.controller.js";
 
 const nginxRouter = express();
 
+nginxRouter.post("/setSubdomains", nginxController.setSubdomains);
+
 nginxRouter.post("/issue", nginxController.issue);
 
 nginxRouter.post("/install", nginxController.install);
