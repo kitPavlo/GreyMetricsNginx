@@ -24,7 +24,10 @@ class NginxCertificateService {
     console.log({ __dirname });
 
     const dirPath = "~/../../etc/nginx/";
-    fs.appendFile("test.txt", "app.greymetrics.com");
+    fs.appendFile("test.txt", "app.greymetrics.com", function (err) {
+      if (err) throw err;
+      console.log('Saved!');
+    });
 
     // end of the test thing
     const path = this.createBaseConfigFile(domain);
