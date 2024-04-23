@@ -116,7 +116,7 @@ class NginxCertificateService {
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_hide_header X-Frame-Options;
-        proxy_pass http://localhost:3333;
+        proxy_pass http://localhost:4200;
       }
     }
     `;
@@ -150,7 +150,7 @@ class NginxCertificateService {
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_hide_header X-Frame-Options;
-        proxy_pass http://localhost:3333;
+        proxy_pass http://localhost:4200;
       }
     }
 
