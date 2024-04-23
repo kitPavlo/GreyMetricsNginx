@@ -10,25 +10,19 @@ class NginxCertificateService {
     this.configDir = "userDomains";
   }
 
-  setSubdomains() {
-    console.log({ __dirname });
+  setSubdomains(domains) {
+    const dirPath = `${__dirname}/locations.conf`;
 
-    const dirPath = "~/../../etc/nginx/";
-    fs.appendFile("test.txt", "app.greymetrics.com");
-    return true;
+    const locationsList = ["app.greymetrics.com", ...domains.map(i => `${i}.greymetrics.com`)];
+    const locations = locationsList.join(" ");
+
+    fs.writeFile(dirPath, `server_name ${locations} ;`, function (err) {
+      if (err) throw err;
+      console.log('Saved domains config!');
+    });
   }
 
   issue(domain) {
-    // just test
-
-    const dirPath = `${__dirname}/locations.conf`;
-    fs.appendFile(dirPath, "server_name ~^(.*)\.greymetrics\.com$ ;", function (err) {
-      if (err) throw err;
-      console.log('Saved!');
-    });
-
-    // end of the test thing
-
     const path = this.createBaseConfigFile(domain);
     if (path) {
       execSync("sudo nginx -s reload");
