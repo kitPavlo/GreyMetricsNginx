@@ -20,6 +20,8 @@ class NginxCertificateService {
       if (err) throw err;
       console.log('Saved domains config!');
     });
+
+    return true;
   }
 
   issue(domain) {
