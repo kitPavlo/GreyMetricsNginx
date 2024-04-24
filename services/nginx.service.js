@@ -13,7 +13,7 @@ class NginxCertificateService {
   setSubdomains(domains) {
     const dirPath = `${__dirname}/locations.conf`;
 
-    const locationsList = ["app.greymetrics.com", ...domains.map(i => `${i}.greymetrics.com`)];
+    const locationsList = ["app.greymetrics.com", ...domains];
     const locations = locationsList.join(" ");
 
     fs.writeFile(dirPath, `server_name ${locations} ;`, function (err) {
