@@ -21,6 +21,8 @@ class NginxCertificateService {
       console.log('Saved domains config!');
     });
 
+    execSync("sudo nginx -s reload");
+
     return true;
   }
 
