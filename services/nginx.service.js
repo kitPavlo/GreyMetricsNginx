@@ -19,7 +19,7 @@ class NginxCertificateService {
     fs.writeFile(dirPath, `server_name ${locations} ;`, function (err) {
       if (err) throw err;
       console.log('Saved domains config!');
-      execSync("sudo nginx -s reload");
+      execSync("sudo service nginx restart");
     });
 
     return true;
